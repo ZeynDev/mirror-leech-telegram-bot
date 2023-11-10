@@ -5,6 +5,7 @@ from aioshutil import move
 from asyncio import sleep, Event, gather
 from time import time
 from datetime import datetime
+from pytz import timezone
 
 from bot import (
     Interval,
