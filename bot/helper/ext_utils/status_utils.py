@@ -141,23 +141,23 @@ def get_readable_message(sid, is_user, page_no=1, status="All", page_step=1):
             MirrorStatus.STATUS_SEEDING,
             MirrorStatus.STATUS_SAMVID,
         ]:
-            msg += f"\n{get_progress_bar_string(task.progress())} {task.progress()}"
-            msg += f"\n<b>Processed:</b> {task.processed_bytes()} of {task.size()}"
-            msg += f"\n<b>Speed:</b> {task.speed()} | <b>ETA:</b> {task.eta()}"
+            msg += f"\n<b>╰►</b> {get_progress_bar_string(task.progress())} {task.progress()}"
+            msg += f"\n<b>╰►Processed:</b> {task.processed_bytes()} of {task.size()}"
+            msg += f"\n<b>╰►Speed:</b> {task.speed()} | <b>╰►ETA:</b> {task.eta()}"
             if hasattr(task, "seeders_num"):
                 try:
-                    msg += f"\n<b>Seeders:</b> {task.seeders_num()} | <b>Leechers:</b> {task.leechers_num()}"
+                    msg += f"\n<b>╰►Seeders:</b> {task.seeders_num()} | <b>Leechers:</b> {task.leechers_num()}"
                 except:
                     pass
         elif tstatus == MirrorStatus.STATUS_SEEDING:
-            msg += f"\n<b>Size: </b>{task.size()}"
-            msg += f"\n<b>Speed: </b>{task.seed_speed()}"
-            msg += f" | <b>Uploaded: </b>{task.uploaded_bytes()}"
-            msg += f"\n<b>Ratio: </b>{task.ratio()}"
-            msg += f" | <b>Time: </b>{task.seeding_time()}"
+            msg += f"\n<b>╰►Size: </b>{task.size()}"
+            msg += f"\n<b>╰►Speed: </b>{task.seed_speed()}"
+            msg += f" | <b>╰►Uploaded: </b>{task.uploaded_bytes()}"
+            msg += f"\n<b>╰►Ratio: </b>{task.ratio()}"
+            msg += f" | <b>╰►Time: </b>{task.seeding_time()}"
         else:
-            msg += f"\n<b>Size: </b>{task.size()}"
-        msg += f"\n<code>/{BotCommands.CancelTaskCommand} {task.gid()}</code>\n\n"
+            msg += f"\n<b>╰►Size: </b>{task.size()}"
+        msg += f"\n<b>╰►</b><code>/{BotCommands.CancelTaskCommand} {task.gid()}</code>\n\n"
 
     if len(msg) == 0 and status == "All":
         return None, None
