@@ -33,7 +33,7 @@ from bot.helper.telegram_helper.message_utils import (
     delete_status,
     update_status_message,
 )
-from bot.helper.ext_utils.status_utils import get_readable_file_size
+from bot.helper.ext_utils.status_utils import get_readable_file_size, get_readable_time
 from bot.helper.ext_utils.bot_utils import sync_to_async
 from bot.helper.ext_utils.links_utils import is_gdrive_id
 from bot.helper.ext_utils.task_manager import start_from_queued
@@ -237,7 +237,7 @@ class TaskListener(TaskConfig):
         ):
             await DbManger().rm_complete_task(self.message.link)
         msg = f"<b>Name: </b><code>{escape(self.name)}</code>\n\n<b>Size: </b>{get_readable_file_size(size)}"
-        ##msg += f"<b>╰►Elapsed: </b> {get_readable_time(time() - self.message.date.timestamp())}"
+        msg += f"\n<b>╰►Elapsed: </b> {get_readable_time(time() - self.message.date.timestamp())}"
         LOGGER.info(f"Task Done: {self.name}")
         if self.isLeech:
             msg += f"\n<b>╰►Total Files: </b>{folders}"
