@@ -228,23 +228,21 @@ class Mirror(TaskListener):
                 file_ = None
 
         if (
-            is_telegram_link(self.link)
-            and not self.link
-            ##and file_ is None
+            and file_ is None
             ##and is_telegram_link(self.link)
             or reply_to is None
-            or file_ is None
+            ##or file_ is None
             and not is_url(self.link)
             and not is_magnet(self.link)
             and not await aiopath.exists(self.link)
             and not is_rclone_path(self.link)
             and not is_gdrive_id(self.link)
         ):
-           ## await sendMessage(
-                ##self.message, "Open this link for usage help!", COMMAND_USAGE["main"]
-           ## )
-           ## self.removeFromSameDir()
-          ##  return
+            await sendMessage(
+                self.message, "Open this link for usage help!", COMMAND_USAGE["main"]
+            )
+            self.removeFromSameDir()
+            return
 
         if self.link:
             LOGGER.info(self.link)
