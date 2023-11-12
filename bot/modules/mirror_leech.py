@@ -240,11 +240,11 @@ class Mirror(TaskListener):
             and not is_rclone_path(self.link)
             and not is_gdrive_id(self.link)
         ):
-            await sendMessage(
+            '''await sendMessage(
                 self.message, "Open this link for usage help!", COMMAND_USAGE["main"]
             )
             self.removeFromSameDir()
-            return
+            return''''
 
         if self.link:
             LOGGER.info(self.link)
