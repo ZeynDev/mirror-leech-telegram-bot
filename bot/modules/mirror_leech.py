@@ -229,6 +229,7 @@ class Mirror(TaskListener):
 
         if (
             not self.link
+            and is_telegram_link(self.link)
             and file_ is None
             ##and is_telegram_link(self.link)
             or reply_to is None
