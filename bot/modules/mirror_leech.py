@@ -168,7 +168,7 @@ class Mirror(TaskListener):
         if not self.link and (reply_to := self.message.reply_to_message):
             if reply_to.text:
                 self.link = reply_to.text.split("\n", 1)[0].strip()
-        if is_telegram_link(self.link):
+        if self.link and is_telegram_link(self.link):
             try:
                 reply_to, self.session = await get_tg_link_message(self.link)
             except Exception as e:
@@ -235,7 +235,6 @@ class Mirror(TaskListener):
             ##and is_telegram_link(self.link)
             or reply_to is None
             ##or file_ is None
-            and not is_telegram_link(self.link)
             and not is_url(self.link)
             and not is_magnet(self.link)
             and not await aiopath.exists(self.link)
