@@ -20,14 +20,14 @@ async def stop_duplicate_check(listener):
         isinstance(listener.upDest, int)
         or listener.isLeech
         or listener.select
-        or is_gdrive_id(listener.upDest)
+        or not is_gdrive_id(listener.upDest)
         or listener.upDest.startswith("mtp:")
         and listener.stopDuplicate
         or not listener.stopDuplicate
         or listener.sameDir
     ):
         return False, None
-    name = listener.name
+    name = listener
     LOGGER.info(f"Checking File/Folder if already in Drive: {name}")
     if listener.compress:
         name = f"{name}.zip"
