@@ -15,7 +15,7 @@ from bot.helper.ext_utils.bot_utils import sync_to_async, get_telegraph_list
 from bot.helper.ext_utils.links_utils import is_gdrive_id
 
 
-async def stop_duplicate_check(name, listener):
+async def stop_duplicate_check(name):
     if (
         isinstance(listener.upDest, int)
         or listener.isLeech
