@@ -15,12 +15,12 @@ from bot.helper.ext_utils.bot_utils import sync_to_async, get_telegraph_list
 from bot.helper.ext_utils.links_utils import is_gdrive_id
 
 
-async def stop_duplicate_check(name):
+async def stop_duplicate_check(listener):
     if (
         isinstance(listener.upDest, int)
         or listener.isLeech
         or listener.select
-        or not is_gdrive_id(listener.upDest)
+        or is_gdrive_id(listener.upDest)
         or listener.upDest.startswith("mtp:")
         and listener.stopDuplicate
         or not listener.stopDuplicate
