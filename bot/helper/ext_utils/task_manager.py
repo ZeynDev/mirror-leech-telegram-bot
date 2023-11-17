@@ -51,6 +51,16 @@ async def stop_duplicate_check(listener):
             return msg, button
     return False, None
 
+async def check_duplicate_file(self, up_name):
+    LOGGER.info(f"Searching {up_name} in drive")
+    message = self.message
+    user_id = message.from_user.id 
+    telegraph_content, contents_no = await sync_to_async(gdSearch(stopDup=True).drive_list, up_name, self.upDest, self.user_id)
+    if telegraph_content:
+        msg = f"\nFile/Folder is already available in Drive.\nHere are {contents_no} list results:"
+            button = await get_telegraph_list(telegraph_content)
+        return msg, button
+    return False, None
 
 async def is_queued(mid):
     all_limit = config_dict["QUEUE_ALL"]
